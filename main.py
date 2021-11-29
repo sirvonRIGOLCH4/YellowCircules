@@ -2,13 +2,13 @@ import sys
 import random
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
+from ui import Ui_MainWindow
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.draw)
         self.flag = False
 
@@ -25,9 +25,9 @@ class MainWindow(QMainWindow):
 
     def drawCircule(self, p):
         if self.flag:
-            p.setBrush(QColor(255, 255, 0))
-            temp = random.randint(1, 200)
-            p.drawEllipse(250, 200, temp, temp)
+            rand = random.randint(1, 200)
+            p.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+            p.drawEllipse(250, 200, rand, rand)
             self.flag = False
 
 
